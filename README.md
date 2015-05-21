@@ -89,6 +89,7 @@ int closedThreshold[] = {
   170 //pinky
 };
 ```
+... 
 
 ```
 void setAllFingers(float _normalizedPos){
@@ -100,7 +101,6 @@ void setAllFingers(float _normalizedPos){
 ```
 
 
-
 ##### Code References
 
 - All of the code that makes this full system work can be found in the [OpenBCI_InMoov_wComp subdirectory](https://github.com/conorrussomanno/OpenBCI_InMoov/tree/master/OpenBCI_InMoov_wComp) of this repo. 
@@ -110,7 +110,7 @@ void setAllFingers(float _normalizedPos){
 
 ### The Challenge!
 
-##### OpenBCI --> InMoov Hand
+![image](images/InMoov_Diagram_Challenge.png)
 
 ### Helpful Resources
 
