@@ -16,7 +16,7 @@ Then it was on to powering it with biosignals from the OpenBCI!
 ![image](images/InMoov_wComp_Diagram.png)
 
 #### In the Processing GUI
-**/OpenBCI_InMoov_wComp/Processing/OpenBCI_GUI/EEG_Processing.pde**
+CODE: [/OpenBCI_InMoov_wComp/Processing/OpenBCI_GUI/EEG_Processing.pde](https://github.com/conorrussomanno/OpenBCI_InMoov/blob/master/OpenBCI_InMoov_wComp/Processing/OpenBCI_GUI/EEG_Processing.pde)
 
 Currently, we have the OpenBCI board recording a single EMG channel and sending it into the OpenBCI Processing GUI where it is being processed. The raw data of this channel is being converted into a filtered microvolt (uV) value that is legible by:
 
@@ -69,9 +69,37 @@ inMoov_serial.write(inMoov_output);
 ```
 
 ##### In Arduino
-**/OpenBCI_InMoov_wComp/Arduino/InMoov/InMoov.ino**
+CODE: [/OpenBCI_InMoov_wComp/Arduino/InMoov/InMoov.ino](https://github.com/conorrussomanno/OpenBCI_InMoov/blob/master/OpenBCI_InMoov_wComp/Arduino/InMoov/InMoov.ino)
 
 That analog value (from 0-255) is then mapped to the rotation of the servo motors controlling each finger of the InMoov hand.
+
+```
+int openThreshold[] = {
+  40, //thumb
+  15, //pointer
+  10, //middle
+  50, //ring
+  10 //pinky
+};
+int closedThreshold[] = {
+  180, //thumb
+  175, //pointer
+  180, //middle
+  180, //ring
+  170 //pinky
+};
+```
+
+```
+void setAllFingers(float _normalizedPos){
+  for(int i = 0; i < numFingers; i++){
+    pos[i] = (int)((_normalizedPos * (closedThreshold[i] - openThreshold[i])) + openThreshold[i]);  //map the normalized value onto the full range or each finger
+    servos[i].write(pos[i]);
+  }
+}
+```
+
+
 
 ##### Code References
 
