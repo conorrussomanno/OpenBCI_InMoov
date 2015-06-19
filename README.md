@@ -64,7 +64,7 @@ Each frame, the rolling average is mapped (or normalized) between the upper thre
 ```
 
 inMoov_output = (int)map(myAverage, lowerThreshold, upperThreshold, 0, 255);
-
+println("inMoov_output: | " + inMoov_output + " |");
 inMoov_serial.write(inMoov_output);
 
 ```
