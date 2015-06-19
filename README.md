@@ -62,10 +62,11 @@ myAverage = myAverage / float(averagePeriod); //finishing the average
 Each frame, the rolling average is mapped (or normalized) between the upper threshold and lower threshold. In processing we set this range from 0-255 to be equivalent to a single byte's worth of "analogue" resolution. This mapped value from 0-255 (representing how hard the user is flexing) is then sent out to an arduino on a separate serial port. 
 
 ```
+
 inMoov_output = (int)map(myAverage, lowerThreshold, upperThreshold, 0, 255);
 
-println("inMoov_output: | " + inMoov_output + " |");
 inMoov_serial.write(inMoov_output);
+
 ```
 
 ##### In Arduino
