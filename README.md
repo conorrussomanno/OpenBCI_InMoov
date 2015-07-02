@@ -28,6 +28,7 @@ Then, as the user flexes and relaxes, upper and lower thresholds are established
 
 
 <pre>
+```
 if(myAverage >= upperThreshold && myAverage <= acceptableLimitUV){ 
    upperThreshold = myAverage; 
 }
@@ -43,6 +44,7 @@ if(upperThreshold >= myAverage){
 if(lowerThreshold <= myAverage){
   lowerThreshold += (25 - lowerThreshold)/(frameRate * 5); //have lower threshold creep upwards to keep range tight
 }
+```
 </pre>
 
 The rolling average of 1 sec helps to smooth the values of the hand so that it doesn't behave irratically, and the constantly changing limits help to ensure that the user is able to comfortably flex (without straining) to get the robot hand to actuate each finger fully yet gradually.
