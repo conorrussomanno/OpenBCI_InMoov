@@ -30,6 +30,7 @@ Then, as the user flexes and relaxes, upper and lower thresholds are established
 if(myAverage >= upperThreshold && myAverage <= acceptableLimitUV){ 
    upperThreshold = myAverage; 
 }
+
 if(myAverage <= lowerThreshold){
    lowerThreshold = myAverage; 
 }
