@@ -27,7 +27,7 @@ Currently, we have the OpenBCI board recording a single EMG channel and sending 
 Then, as the user flexes and relaxes, upper and lower thresholds are established that represent the "comfortable flex range" of the user for the targeted muscle group. These thresholds continue to update themselves over time to maintain a rolling comfortable flex range. Additionally a rolling average of the previous 1 sec of filtered uV values is contiously updated. Each time this rolling average exceeds the upper threshold, the upper threshold is pushed upward to meet the new upper limit. And each time the user relaxes and the rolling uV average drops below the lower threshold, the lower threshold drops to meet the new lower limit. Both the upper threshold and lower threshold slowly creep toward the rolling average so as to prevent large uV spikes from "breaking" the comfortable range. 
 
 
-```
+<pre>
 if(myAverage >= upperThreshold && myAverage <= acceptableLimitUV){ 
    upperThreshold = myAverage; 
 }
@@ -40,7 +40,7 @@ if(upperThreshold >= myAverage){
 if(lowerThreshold <= myAverage){
   lowerThreshold += (25 - lowerThreshold)/(frameRate * 5); //have lower threshold creep upwards to keep range tight
 }
-```
+</pre>
 
 The rolling average of 1 sec helps to smooth the values of the hand so that it doesn't behave irratically, and the constantly changing limits help to ensure that the user is able to comfortably flex (without straining) to get the robot hand to actuate each finger fully yet gradually.
 
