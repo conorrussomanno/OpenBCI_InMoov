@@ -30,15 +30,12 @@ Then, as the user flexes and relaxes, upper and lower thresholds are established
 if(myAverage >= upperThreshold && myAverage <= acceptableLimitUV){ 
    upperThreshold = myAverage; 
 }
-
 if(myAverage <= lowerThreshold){
    lowerThreshold = myAverage; 
 }
-
 if(upperThreshold >= myAverage){
   upperThreshold -= (upperThreshold - 25)/(frameRate * 5); //have upper threshold creep downwards to keep range tight
 }
-
 if(lowerThreshold <= myAverage){
   lowerThreshold += (25 - lowerThreshold)/(frameRate * 5); //have lower threshold creep upwards to keep range tight
 }
@@ -52,7 +49,6 @@ for(int i = data_forDisplay_uV[ourChan].length - averagePeriod; i < data_forDisp
      myAverage += abs(data_forDisplay_uV[ourChan][i]);
    }
 }
-
 myAverage = myAverage / float(averagePeriod); //finishing the average
 ```
 
