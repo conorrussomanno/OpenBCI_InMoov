@@ -3,19 +3,22 @@
 Servo servos[5];
 int numFingers = 5;
 
+int safeClosed = 135;
+int safeOpen = 45;
+
 int openThreshold[] = {
-  40, //thumb
-  15, //pointer
-  10, //middle
-  50, //ring
-  10 //pinky
+  70, //thumb - 0 MIN
+  70, //pointer 0 MIN
+  135, //middle 0 MIN
+  70, //ring 0 MIN
+  70 //pinky 0 MIN
 };
 int closedThreshold[] = {
-  180, //thumb
-  175, //pointer
-  180, //middle
-  180, //ring
-  170 //pinky
+  160, //thumb - 180 MAX
+  180, //pointer - 180 MAX
+  5, //middle - 180 MAX
+  170, //ring - 180 MAX
+  160 //pinky - 180 MAX
 };
 
 int pos[5]; //array of current finger positions ... this gets written to the hand
@@ -54,58 +57,55 @@ void loop() {            // Loop through motion tests
 
 //======= Basic Open/Close Animation ======= //
 
-//close hand
-//  for(float i = 0.0; i < 1.0; i+=0.01){
-//    setAllFingers(i);
-//    Serial.println(i);
-//    delay(20);
-//  }
-//  
-//  delay(2000);
-//  
-//  //open hand
-//  for(float i = 1.0; i > 0.0; i-=0.01){
-//    setAllFingers(i); 
-//    Serial.println(i);
-//    delay(20);
-//  }
-//  delay(2000);
+  //close hand
+  for(float i = 0.0; i < 1.0; i+=0.01){
+    setAllFingers(i);
+    Serial.println(i);
+    delay(20);
+  }
+  
+  delay(2000);
+  
+  //open hand
+  for(float i = 1.0; i > 0.0; i-=0.01){
+    setAllFingers(i); 
+    Serial.println(i);
+    delay(20);
+  }
+  delay(2000);
+  
+  
   
   
 
 
 //------ Responding To OpenBCI EMG ------//
-//
-  addToValue = (int)(((float)targetValue - (float)actualValue)/10.0);
-  actualValue += addToValue;
 
-  if(actualValue > 255) actualValue = 255;
-  if(actualValue < 0) actualValue = 0;
-  
-  analogWrite(led, actualValue);
-  
-//  actualValueFloat = (float)actualValue;
-  numberToHand = float(map(actualValue, 0, 255, 0, 1000))/1000.0;
-  
-//  analogWrite(led, (int)numberToHand*255);
- 
-  setAllFingers(numberToHand);
-  delay(20); 
+//  addToValue = (int)(((float)targetValue - (float)actualValue)/10.0);
+//  actualValue += addToValue;
+//
+//  if(actualValue > 255) actualValue = 255;
+//  if(actualValue < 0) actualValue = 0;
+//  
+//  analogWrite(led, actualValue);
+//  
+//              //  actualValueFloat = (float)actualValue;
+//  numberToHand = float(map(actualValue, 0, 255, 0, 1000))/1000.0;
+//  
+//              //  analogWrite(led, (int)numberToHand*255);
 // 
-//------ 
-//  setAllFingers(0);
-//  delay(20);
-   
-//  setFingerDegree(4, 40);
-//  delay(30);
-  
+//  setAllFingers(numberToHand);
+//  delay(20); 
+
+
+
+
+
 //----- For Resetting Servos to 90 ----- //  
-//  setAllServosTo(20);
-//  delay(1000);
-//  setAllServosTo(90);
-//  delay(3000);
-//  setAllServosTo(160);
-//  delay(1000);
+//  setAllServos(90);
+ 
+ 
+ 
  
 }
 
